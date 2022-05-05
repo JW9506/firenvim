@@ -170,7 +170,7 @@ export async function setupInput(
             nvim.command("doautocmd FocusGained");
         });
         window.addEventListener("blur", () => {
-            document.documentElement.style.opacity = "0.5";
+            document.documentElement.style.opacity = "1";
             nvim.command("doautocmd FocusLost");
         });
         keyHandler.focus();

@@ -64,7 +64,12 @@ export const firenvimGlobal = {
                 unlock();
                 return;
             }
-
+            let elm = evt.target;
+            if (window.location.hostname === 'leetcode-cn.com') {
+              elm = (elm as any).parentElement.parentElement.parentElement;
+            }
+            (window as any).__firenvim_mnt_elm = elm;
+            (window as any).__firenvim_mnt_elm.style.visibility = 'hidden'
             const firenvim = new FirenvimElement(
                 evt.target as HTMLElement,
                 firenvimGlobal.nvimify,

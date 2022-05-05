@@ -126,11 +126,13 @@ export function getNeovimFrameFunctions(global: IGlobalState) {
             .get(frameId)
             .getPageElementContent(),
         hideEditor: (frameId: number) => {
+            (window as any).__firenvim_mnt_elm.style.visibility = 'unset'
             const firenvim = global.firenvimElems.get(frameId);
             firenvim.hide();
             _focusInput(global, firenvim, true);
         },
         killEditor: (frameId: number) => {
+            (window as any).__firenvim_mnt_elm.style.visibility = 'unset'
             const firenvim = global.firenvimElems.get(frameId);
             const isFocused = firenvim.isFocused();
             firenvim.detachFromPage();
