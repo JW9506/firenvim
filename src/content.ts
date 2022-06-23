@@ -65,7 +65,7 @@ export const firenvimGlobal = {
                 return;
             }
             let elm = evt.target;
-            if (window.location.hostname === 'leetcode-cn.com') {
+            if (window.location.hostname === 'leetcode.cn') {
               elm = (elm as any).parentElement.parentElement.parentElement;
             }
             (window as any).__firenvim_mnt_elm = elm;

@@ -29,7 +29,7 @@ export class FirenvimElement {
     private frameIdPromise: Promise<number>;
     // iframe is the Neovim frame. This is the element that receives all inputs
     // and displays the editor.
-    private iframe: HTMLIFrameElement;
+    public iframe: HTMLIFrameElement;
     // We use an intersectionObserver to detect when the element the
     // FirenvimElement is tied becomes invisible. When this happens,
     // we hide the FirenvimElement from the page.
@@ -407,7 +407,7 @@ export class FirenvimElement {
         this.iframe.style.top = `${rect.top + window.scrollY + this.relativeY}px`;
         // 2139999995 is hopefully higher than everything else on the page but
         // lower than Vimium's elements
-        this.iframe.style.zIndex = "2139999995";
+        // this.iframe.style.zIndex = "2139999995";
 
         // Compare, to know whether the element moved or not
         const posChanged = !!posAttrs.find((attr: any, index) =>
