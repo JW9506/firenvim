@@ -1,0 +1,30 @@
+{
+   "background": {
+      "scripts": [
+         "background.js"
+      ]
+   },
+   "description": "Turn thunderbird into a Neovim GUI.",
+   "icons": {
+      "128": "firenvim.svg"
+   },
+   "manifest_version": 2,
+   "name": "Firenvim",
+   "options_ui": {
+      "page": "options.html"
+   },
+   "permissions": [
+      "nativeMessaging",
+      "storage",
+      "tabs",
+      "compose",
+      "compose.send"
+   ],
+   "version": "0.2.11",
+   "browser_specific_settings": {
+      "gecko": {
+         "id": "firenvim@lacamb.re",
+         "strict_min_version": "92.0"
+      }
+   }
+}
