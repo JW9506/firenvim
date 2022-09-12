@@ -185,8 +185,8 @@ export class PageEventEmitter extends EventEmitter<PageEvents, PageHandlers> {
                     break;
                 case "get_buf_content":
                     return new Promise(resolve => this.emit(request.funcName[0], resolve));
-                default:
-                    console.error("Unhandled page request:", request);
+                // default:
+                //     console.error("Unhandled page request:", request);
             }
         });
     }

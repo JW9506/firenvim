@@ -2,6 +2,8 @@ import { PageType } from "./page"
 import * as CanvasRenderer from "./renderer";
 import { Stdin } from "./Stdin";
 import { Stdout } from "./Stdout";
+import { toFileName } from "./utils/utils";
+import { getConfForUrl } from "./utils/configuration";
 
 export async function neovim(
         page: PageType,
@@ -75,6 +77,16 @@ export async function neovim(
             // page.setElementContent/Cursor! Same thing for firenvim_press_keys
             const hadFocus = document.hasFocus();
             switch (name) {
+                case "firenvim_sync_with_elm": {
+                  return Promise.all([page.getElementContent(), page.getEditorInfo()]).then(([content, [url, selector, cursor, language]]) => {
+                      const urlSettings = getConfForUrl(url);
+                      const filename = toFileName(urlSettings.filename, url, selector, language);
+                      const [line, col] = cursor;
+                      return functions.call_function("writefile", [content.split("\n"), filename])
+                        .then(() => functions.command(`edit ${filename} `
+                                              + `| call nvim_win_set_cursor(0, [${line}, ${col}])`));
+                  })
+                }
                 case "firenvim_bufwrite":
                     {
                     const data = args[0] as { text: string[], cursor: [number, number] };
